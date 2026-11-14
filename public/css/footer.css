@@ -1,5 +1,10 @@
 footer {
-  background-color: var(--green);
-  border-top: var(--line);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 1rem;
+  max-width: 1100px;
+  margin: auto;
 }
 

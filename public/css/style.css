@@ -1,10 +1,7 @@
-body{
-  background-color: var(--bg);
-  padding: 0px;
-  margin: 0px;
-}
 
-@import url("/public/css/nav.css");
+@import url("/css/nav.css");
+@import url("/css/footer.css");
+@import url("/css/fonts.css");
 
 :root{
 --bg: #0f1b16;
@@ -19,9 +16,121 @@ body{
 --goldl:#e4c77a;
 --ok:#6fd0a0;
 --bad:#ff8c99;
-
+--brun:#241a05;
+--btn-border:6px;
 }
 
-a {
-  color: #d25a6a;
+body{
+  background-color: var(--bg);
+  padding: 0px;
+  margin: 0px;
 }
+
+main {
+  padding: 1.2rem 6rem 2rem;
+}
+
+.btn-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  border:dashed 1px var(--line);
+}
+
+#info_main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.4rem;
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--green), var(--green2));
+}
+
+.gul_knapp {
+  background-color: var(--gold);
+  color: var(--brun);
+  border: none;
+  border-radius: var(--btn-border);
+  padding: .55rem 1.2rem;
+}
+
+.gul_knapp:hover {
+  opacity: 80%;
+}
+
+.line {
+  display: flex;
+  background-color: var(--gold);
+  width: 18%;
+  height: 1px;
+}
+
+.star {
+  padding: 0px 15px;
+}
+
+.overskrift {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ink);
+}
+
+#dato-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+#sel {
+  background: var(--surf);
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: .5rem .7rem;
+}
+
+#dato {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: .4rem .8rem;
+  border-radius: 8px;
+}
+
+.dekorasjon_line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--gold);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: .8rem;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;          
+  border: 1.5px solid #b8892b;
+  border-radius: 10px;
+  background: #fffdf8;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tile.today { background: #8a1c2b; color: #fff; }
+.tile.past  { background: #143d2e; color: #f6efdc; }
+.tile.lock  { border-style: dashed; opacity: .6; cursor: not-allowed; }
