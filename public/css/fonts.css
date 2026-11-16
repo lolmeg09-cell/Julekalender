@@ -2,6 +2,20 @@ span {
   font-family: georgia, 'Times New Roman', Times, serif;
 }
 
+p, h1, h2, span, li, a {
+  padding: 0px;
+  margin: 0px;
+}
+
+p, h1, h2, select, label, b {
+  color: var(--ink);
+}
+
+b {
+  opacity: 100%;
+  z-index: 10;
+}
+  
 a {
   color: #d25a6a;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -11,7 +25,66 @@ a {
   font: 2.2rem Georgia, serif; line-height: 1; 
 }
 
-p {
-  padding: 0px;
-  margin: 0px;
+.info {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+#åpnet{
+  opacity: 80%;
+}
+
+#dag{
+    letter-spacing: 0.14em;
+    color: var(--goldl);
+    font-size: smaller;
+}
+
+#luke-info{
+  line-height: 1.2;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin: 0.2rem 0;
+}
+
+.nav-overskrift {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 21.6px;
+  color: var(--goldl);
+}
+
+#jul {
+  color: var(--ink);
+}
+
+#år {
+  padding-left: 4px;
+}
+
+#bleiker {
+  font-size: 12px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: 0.14em;
+}
+
+.gul_knapp {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.footer-txt {
+  font-size: .86rem;
+  opacity: 90%;
+}
+
+#alle-luker-txt {
+  margin: 0 0 1rem;
+  line-height: 1.2;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.5em;
+}
+
+.btn_nav {
+  font-size:medium;
+}
+
+
+

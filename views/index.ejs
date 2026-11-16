@@ -9,8 +9,33 @@
 <main>
   <div id="dato" class="wrap">
     <div id="dato-wrap">
-      <label for="sel" style="margin:0;font-weight:400">Dato:</label>
-      <select id="sel"><option value="1">1. desember</option></select>
+      <label for="sel" class="dato-innhold" style="margin:0;font-weight:400">Dato:</label>
+      <select id="sel" class="dato-innhold" >
+        <option value="1">1. desember</option>
+        <option value="2">2. desember</option>
+        <option value="3">3. desember</option>
+        <option value="4">4. desember</option>
+        <option value="5">5. desember</option>
+        <option value="6">6. desember</option>
+        <option value="7">7. desember</option>
+        <option value="8">8. desember</option>
+        <option value="9">9. desember</option>
+        <option value="10">10. desember</option>
+        <option value="11">11. desember</option>
+        <option value="12">12. desember</option>
+        <option value="13">13. desember</option>
+        <option value="14">14. desember</option>
+        <option value="15">15. desember</option>
+        <option value="16">16. desember</option>
+        <option value="17">17. desember</option>
+        <option value="18">18. desember</option>
+        <option value="19">19. desember</option>
+        <option value="20">20. desember</option>
+        <option value="21">21. desember</option>
+        <option value="22">22. desember</option>
+        <option value="23">23. desember</option>
+        <option value="24">24. desember</option>
+      </select>
     </div>
   </div>
 
@@ -18,9 +43,9 @@
     <div class="wrap" id="info_main">
 
       <div>
-        <p>I DAG, 3. DESEMBER</p>
-        <h1>Luke </h1>
-        <p>x av x luker er åpnet. Neste luke åpner i morgen</p>
+        <p class="info" id="dag">I DAG, 3. DESEMBER</p>
+        <h1 class="info" id="luke-info">Luke </h1>
+        <p class="info" id="åpnet">x av x luker er åpnet. Neste luke åpner i morgen</p>
       </div>
       
       <div class="btn-right">
@@ -29,6 +54,7 @@
 
     </div>
   </section>
+
   <div class="dekorasjon_line">
     <div class="line">
     </div>
@@ -42,10 +68,10 @@
   </div>
 
 <div class="overskrift">
-  <h1>Alle luker</h1>
+  <h1 id="alle-luker-txt">Alle luker</h1>
 </div>
 
-  <div class="wrap">
+  <div>
     <ul class="grid">
        <li><a class="tile today" href="/luke/1"><b>1</b><small>I dag</small></a></li>
       <li><span class="tile lock"><b>2</b><small>🔒</small></span></li>
