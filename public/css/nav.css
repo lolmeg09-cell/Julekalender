@@ -51,7 +51,7 @@ nav ul {
   gap: .5rem;
 }
 
-#aktiv {
+.btn_nav.aktiv {
   border: 1px solid var(--goldl);
   border-radius: 6px;
   color: var(--goldl);

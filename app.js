@@ -19,6 +19,22 @@ app.get("/",(req, res) => {
   res.render("index");
 });
 
+app.get("/admin",(req, res) => {
+  res.render("admin");
+});
+
+app.get("/svar",(req, res) => {
+  res.render("svar");
+});
+
+app.get("/trekning",(req, res) => {
+  res.render("trekning");
+});
+
+app.get("/spørsmål",(req, res) => {
+  res.render("spørsmål");
+});
+
 
 
 

@@ -1,0 +1,28 @@
+.button-side-nav-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.wrap-side-nav {
+  background-color: var(--green);
+  border-radius: 12px;
+  padding: .8rem;
+}
+
+#linje-nav-side {
+  height: 1px;
+  width: 100%;
+  background-color: #fff3;
+  margin: 10px 0px;
+}
+
+
+.button-side-nav-wrap button{
+  border: none;
+  color: var(--ink);
+  background-color: transparent;
+
+}

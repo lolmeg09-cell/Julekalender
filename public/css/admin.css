@@ -1,0 +1,41 @@
+.admin-innhold {
+  display: flex;
+  gap: 20px;
+}
+
+ .høyre-innhold {
+   flex: 1;
+  min-width: 0;
+} 
+
+.mini-info-bokser {
+  display: flex;
+  justify-content: flex-start;
+  gap: .7rem;
+  margin-bottom: 1rem;
+}
+
+.head-admin {
+  margin: 0 0 .5rem;;
+}
+
+.svar-per-luke-boks {
+  display: flex;
+
+  background-color: var(--surf);
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.boks {
+  background-color: var(--surf);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gold);
+  padding: .7rem .9rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
