@@ -15,6 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(process.env.MONGODB_URI);
 
+app.use((req, res, next) => {
+  res.locals.path = req.path;
+  next();
+});
+
+
 app.get("/",(req, res) => {
   res.render("index");
 });
@@ -34,6 +40,7 @@ app.get("/trekning",(req, res) => {
 app.get("/spørsmål",(req, res) => {
   res.render("spørsmål");
 });
+
 
 
 

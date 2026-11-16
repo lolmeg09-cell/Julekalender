@@ -12,9 +12,9 @@
   </div>
     
     <div class="nav_buttons">
-      <button class="btn_nav" onclick="window.location.href='/'">Kalender</button>
-      <button class="btn_nav" onclick="window.location.href='/admin'">Administrasjon</button>
-    </div>
+      <a class="btn_nav" href="/" aria-current="<%= path === '/' ? 'page' : 'false' %>">Kalender</a>
+      <a class="btn_nav" href="/admin" aria-current="<%= path.startsWith('/admin') ? 'page' : 'false' %>">Administrasjon</a>
+</div>
     
   </nav>
 </div>
