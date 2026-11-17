@@ -183,4 +183,25 @@ main {
    background-color: var(--bg);
 }
 
+.snow-zone {
+  position: relative;
+  overflow: hidden;     
+}
+
+.flake {
+  position: absolute;
+  top: -20px;
+  color: #fff;
+  pointer-events: none;  
+  z-index: 100;          
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(var(--fall-height)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flake { display: none; }
+}
 

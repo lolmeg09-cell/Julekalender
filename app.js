@@ -37,9 +37,12 @@ app.get("/trekning",(req, res) => {
   res.render("trekning");
 });
 
-app.get("/spørsmål",(req, res) => {
-  res.render("spørsmål");
+app.get("/sporsmal",(req, res) => {
+  res.render("sporsmal");
 });
+
+
+
 
 
 

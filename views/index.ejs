@@ -6,13 +6,16 @@
   <%- include("./partials/nav.ejs")%>
 </section>
 
-<main>
-  <%- include("./partials/dato.ejs")%>
+<div class="snow-zone">
  
+  <main>
+    <%- include("./partials/dato.ejs")%>
 
+    
+    
   <section class="hero">
     <div class="wrap" id="info_main">
-
+      
       <div>
         <p class="info" id="dag">I DAG, 3. DESEMBER</p>
         <h1 class="info" id="luke-info">Luke </h1>
@@ -22,29 +25,29 @@
       <div class="btn-right">
         <button class="gul_knapp">Åpne dagens luke</button>
       </div>
-
+      
     </div>
   </section>
-
+  
   <div class="dekorasjon_line">
     <div class="line">
     </div>
-
+    
     <div class="star">
       ✦
     </div>
-
+    
     <div class="line">
     </div>
   </div>
-
-<div class="overskrift">
-  <h1 id="alle-luker-txt">Alle luker</h1>
-</div>
-
+  
+  <div class="overskrift">
+    <h1 id="alle-luker-txt">Alle luker</h1>
+  </div>
+  
   <div>
     <ul class="grid">
-       <li><a class="tile today" href="/luke/1"><b>1</b><small>I dag</small></a></li>
+      <li><a class="tile today" href="/luke/1"><b>1</b><small>I dag</small></a></li>
       <li><span class="tile lock"><b>2</b></span></li>
       <li><span class="tile lock"><b>3</b></span></li>
       <li><span class="tile lock"><b>4</b></span></li>
@@ -68,13 +71,14 @@
       <li><span class="tile lock"><b>22</b></span></li>
       <li><span class="tile lock"><b>23</b></span></li>
       <li><span class="tile lock"><b>24</b></span></li>
-       
+      
     </ul>
   </div>
-
-
-
+  
+  
+  
 </main>
+</div>
 
 <section>
   <%- include("./partials/footer.ejs")%>

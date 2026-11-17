@@ -10,6 +10,7 @@
 
 .mini-info-bokser {
   display: flex;
+  flex: 1;
   justify-content: flex-start;
   gap: .7rem;
   margin-bottom: 1rem;
@@ -59,5 +60,5 @@
   padding: .7rem .9rem;
   display: flex;
   justify-content: flex-start;
+  width: 100%;
 }
-

@@ -4,12 +4,14 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
+  width: 100%;
 }
 
 .wrap-side-nav {
   background-color: var(--green);
   border-radius: 12px;
   padding: .8rem;
+
 }
 
 #linje-nav-side {
@@ -17,12 +19,38 @@
   width: 100%;
   background-color: #fff3;
   margin: 10px 0px;
+  margin-top: 30px;
 }
-
 
 .button-side-nav-wrap button{
   border: none;
   color: var(--ink);
   background-color: transparent;
+}
 
+.btn-side[aria-current="page"] {
+  background: #ffffff1f;
+  color: var(--goldl);
+  font-weight: 600;
+  width: 83%;
+  justify-content: flex-start;
+ 
+}
+
+.btn-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: .5rem .7rem;
+  color: var(--ink);
+}
+
+.button-side-nav-wrap a {
+  text-decoration: none;
+}
+
+.venstre-innhold{
+  width: 25%;
 }

@@ -1,15 +1,15 @@
 <div class="wrap-side-nav">
-  <h2>Administrasjon</h2>
+  <h2 class="nav_side_overskrift">ADMINISTRASJON</h2>
   <div class="button-side-nav-wrap">
-    <button onclick="window.location.href='/admin'">Oversikt</button>
-    <button onclick="window.location.href='/svar'">Svar</button>
-    <button oncclic="window.location.href='/terkning'">Trekning</button>
-    <button oncclic="window.location.href='/spørsmål'">Spørsmål</button>
+     <a class="btn-side" href="/admin" aria-current="<%= path === '/admin' ? 'page' : 'false' %>">Oversikt</a>
+    <a class="btn-side" href="/svar" aria-current="<%= path.startsWith('/svar') ? 'page' : 'false' %>">Svar</a>
+    <a class="btn-side" href="/trekning" aria-current="<%= path.startsWith('/trekning') ? 'page' : 'false' %>">Trekning</a>
+    <a class="btn-side" href="/sporsmal" aria-current="<%= path.startsWith('/sporsmal') ? 'page' : 'false' %>">Spørsmål</a>
   </div>
   <div id="linje-nav-side"></div>
-  <div>
+  <div class="inlogget-som">
     <p>Innlogget som</p>
-    <p>Lærer (admin)</p>
+    <b>Lærer (admin)</b>
   </div>
   
 </div>
