@@ -18,29 +18,20 @@
 //aktiv knapp funksjon
 
 const currentPath = window.location.pathname;
+const adminPaths = ["/admin", "/sporsmal", "/svar", "/trekning"];
 
 document.querySelectorAll(".btn_nav").forEach(link => {
   const href = link.getAttribute("href");
 
-  const erAktiv = href === "/"
-    ? currentPath === "/"
-    : currentPath.startsWith(href);
-
-  if (erAktiv) link.setAttribute("aria-current", "page");
-});
-
-
-const currentPathSide = window.location.pathname;
-
-document.querySelectorAll(".btn-side").forEach(link => {
-  const href = link.getAttribute("href");
-
   const erAktiv = href === "/admin"
-    ? currentPathSide === "/admin"
-    : currentPathSide.startsWith(href);
+    ? adminPaths.some(p => currentPath.startsWith(p))
+    : currentPath === href;
 
   if (erAktiv) link.setAttribute("aria-current", "page");
 });
+
+
+
 
 
 
