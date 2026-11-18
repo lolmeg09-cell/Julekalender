@@ -4,6 +4,7 @@
 @import url("/css/fonts.css");
 @import url("/css/side-nav.css");
 @import url("/css/admin.css");
+@import url("/css/svar.css");
 
 :root{
 --bg: #0f1b16;
@@ -31,7 +32,7 @@ body{
   margin: 0px;
   min-height: 100dvh;      
   display: grid;             
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto auto;
 }
 
 .cursor {
@@ -39,8 +40,8 @@ body{
 }
 
 main {
-  padding: 1.2rem 6rem 2rem;
-  margin-bottom: 3rem;
+   padding: 1.2rem 6rem 2rem;
+   margin-bottom: 3rem;
 }
 
 .btn-right {
@@ -204,4 +205,6 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .flake { display: none; }
 }
+
+
 
