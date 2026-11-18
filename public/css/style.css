@@ -220,4 +220,24 @@ main {
 }
 
 
+.tile.today:hover b, 
+.tile.today:hover small {
+  visibility: hidden;
+}
+
+.tile.today:hover::after,
+.tile.today:focus-visible::after {
+  content: "Åpne";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: large;
+  color: #fff;
+}
+
+input, label {
+    display:block;
+}
 
