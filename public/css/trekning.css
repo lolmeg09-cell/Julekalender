@@ -1,0 +1,14 @@
+.resultat {
+  border: 1.5px solid var(--gold);
+  padding: 1.2rem;
+  margin: .8rem 0;
+  border-radius: 12px;
+  min-height: 5rem;
+  width: 100%;
+  height: 10%px;
+  padding: .5rem .7rem;
+  margin-bottom: .8rem;
+  color: var(--ink);
+  background-color: var(--surf);
+  box-sizing: border-box;
+}

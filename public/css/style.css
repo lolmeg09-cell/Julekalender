@@ -5,6 +5,8 @@
 @import url("/css/side-nav.css");
 @import url("/css/admin.css");
 @import url("/css/svar.css");
+@import url("/css/trekning.css");
+@import url("/css/sporsmal.css");
 
 :root{
 --bg: #0f1b16;
@@ -33,6 +35,12 @@ body{
   min-height: 100dvh;      
   display: grid;             
   grid-template-rows: auto 1fr auto auto;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .cursor {
@@ -204,6 +212,11 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   .flake { display: none; }
+}
+
+:focus-visible {
+  outline: 3px solid var(--goldl);
+  outline-offset: 2px;
 }
 
 
