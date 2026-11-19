@@ -1,0 +1,26 @@
+.lag-bruker-format {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10%;
+}
+
+.bruker-wrap {
+  background-color: var(--surf);
+  border-radius: 12px;
+  border-color: 1px solid var(--line);
+  padding: 1rem;
+}
+
+.bruker-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+
+
+
+
+

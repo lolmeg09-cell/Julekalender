@@ -37,6 +37,8 @@ document.querySelectorAll(".btn_nav").forEach(link => {
 
 
 
+
+
 //Snøfnugg
 
 const zone = document.querySelector(".snow-zone");

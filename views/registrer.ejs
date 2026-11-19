@@ -1,0 +1,28 @@
+  
+<%- include("./partials/head.ejs") %>
+<body>
+
+  <div class="bruker-head">
+    <h1 class="overskrift-admin">Lag en bruker</h1>
+  </div>
+  
+  <form class="lag-bruker-format" action="/registrer" method="post">
+
+    <div class="bruker-wrap">
+
+   
+      <label class="luke-mini-overskrift" for="email">Email</label>
+      <input placeholder="navn@afk" class="svar-boks" type="email" name="email" id="email" pattern="[a-zA-Z0-9._%+\-]+@afk\.no" title="E-posten må slutte på @afk eller @afk.no" required>
+      
+      <label class="luke-mini-overskrift" for="name">Navn</label>
+      <input class="svar-boks" placeholder="Skriv ditt navn" type="text" name="name" id="name">
+  
+
+    <button class="grønn-knapp">Lag bruker</button>
+      </div>
+  </form>
+     
+
+  
+</body>
+</html>
