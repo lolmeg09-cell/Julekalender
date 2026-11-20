@@ -2,13 +2,13 @@ const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
-const argon2 = require("argon2")
+const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
-const Answer = require("./models/Answer")
-const Quiz = require("./models/Quiz")
-const User = require("./models/User")
+const Answer = require("./models/Answer");
+const Quiz = require("./models/Quiz");
+const User = require("./models/User");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -22,9 +22,10 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect(process.env.MONGODB_URI)
-.then(() => console.log("Connected to MongoDB"))
-.catch((err) => console.error("MongoDB error:", err));
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB error:", err));
 
 function currentDay() {
   if (process.env.FAKE_DAY) return Number(process.env.FAKE_DAY);
@@ -43,7 +44,9 @@ function toEmbedUrl(url) {
 }
 
 function setLoginCookie(res, user) {
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
   res.cookie("token", token, {
     httpOnly: true,
     sameSite: "lax",
@@ -52,21 +55,24 @@ function setLoginCookie(res, user) {
 }
 
 function normalize(s) {
-  return String(s || "").toLocaleLowerCase().trim().replace(/[.,!?]/g, "")
+  return String(s || "")
+    .toLocaleLowerCase()
+    .trim()
+    .replace(/[.,!?]/g, "")
     .replace(/\s+/g, " ");
 }
 
 async function getQuestion(id) {
   const quiz = await Quiz.findById("christmas-quiz").lean();
-  return quiz?.questions.find((q) => q.id === id); 
+  return quiz?.questions.find((q) => q.id === id);
 }
 
 app.use(async (req, res, next) => {
   req.user = null;
   const token = req.cookies.token;
   if (token) {
-    try{
-      const{id}=jwt.verify(token, process.env.JWT_SECRET);
+    try {
+      const { id } = jwt.verify(token, process.env.JWT_SECRET);
       req.user = await User.findById(id);
     } catch {
       res.clearCookie("token");
@@ -74,44 +80,44 @@ app.use(async (req, res, next) => {
   }
   res.locals.user = req.user;
   next();
-
-  
 });
 
-function requireUser(req,res, next) {
-  if(!req.user) return res.redirect("/registrer");
+function requireUser(req, res, next) {
+  if (!req.user) return res.redirect("/registrer");
   next();
-} 
+}
 
-app.get("/", async (req,res) => {
+app.get("/", async (req, res) => {
   const today = currentDay();
   let doneLukes = [];
   if (req.user) {
-    const answer = await Answer.find({user: req.user._id}).select("luke").lean();
+    const answer = await Answer.find({ user: req.user._id })
+      .select("luke")
+      .lean();
     doneLukes = answer.map((a) => a.luke);
   }
-  res.render("index", {today, doneLukes, opened: doneLukes.length});  
+  res.render("index", { today, doneLukes, opened: doneLukes.length });
 });
 
-app.get("/luke/:id", requireUser, async (req,res) => {
+app.get("/luke/:id", requireUser, async (req, res) => {
   try {
     const id = Number(req.params.id);
-    if(!Number.isInteger(id) || id  < 1 || id > 24) {
+    if (!Number.isInteger(id) || id < 1 || id > 24) {
       return res.status(404).send("Luken finnes ikke");
-    } 
+    }
     if (id > currentDay()) {
       return res.status(403).send("Denne luken kan ikke åpnes ennå");
     }
-    if (await Answer.exists({user: req.user._id, luke:id })) {
+    if (await Answer.exists({ user: req.user._id, luke: id })) {
       return res.redirect("/");
     }
 
     const q = await getQuestion(id);
     if (!q) return res.status(404).send("Fant ikke spørsmålet");
 
-    const {correct_answer, ...question} = q;
+    const { correct_answer, ...question } = q;
     res.render("luke", {
-      luke:id,
+      luke: id,
       question,
       embedUrl: q.type === "video" ? toEmbedUrl(q.video_url) : null,
     });
@@ -122,7 +128,7 @@ app.get("/luke/:id", requireUser, async (req,res) => {
 });
 
 app.post("/luke/:id", requireUser, async (req, res) => {
-  try{
+  try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1 || id > currentDay()) {
       return res.status(403).send("Ikke tilgjenglig");
@@ -139,18 +145,19 @@ app.post("/luke/:id", requireUser, async (req, res) => {
       luke: id,
       answer,
       correct: normalize(answer) === normalize(q.correct_answer),
-  });
-  res.redirect("/");
-  } catch(err) {
+    });
+    res.redirect("/");
+  } catch (err) {
     if (err.code === 11000) return res.redirect("/");
     console.error(err);
     res.status(500).send("Noe gikk galt");
   }
 });
 
-
 function setLoginCookie(res, user) {
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
   res.cookie("token", token, {
     httpOnly: true,
     sameSite: "lax",
@@ -176,8 +183,8 @@ app.get("/trekning", requireAdmin, (req, res) => {
   res.render("trekning");
 });
 
-app.get("/logg-inn", requireAdmin, (req,res) => {
-  res.render("logg-inn")
+app.get("/logg-inn", requireAdmin, (req, res) => {
+  res.render("logg-inn");
 });
 
 app.get("/sporsmal", requireAdmin, (req, res) => {
@@ -192,21 +199,22 @@ app.post("/registrer", async (req, res) => {
   try {
     const name = (req.body.name || "").trim();
     const email = (req.body.email || "").trim().toLowerCase();
-    
- 
+
     if (!/^[a-zA-Z0-9._%+\-]+@afk\.no$/.test(email)) {
       return res.status(400).send("Ugyldig e-postadresse");
     }
 
-    const user = await new User({email, name}).save();
+    const user = await new User({ email, name }).save();
 
-    const token = jwt.sign({id:user._id }, process.env.JWT_SECRET, {expiresIn: "30d"});
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "30d",
+    });
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: "lax",
-      maxAge: 30 * 24 * 60 * 60 *1000,
+      maxAge: 30 * 24 * 60 * 60 * 1000,
     });
-      
+
     setLoginCookie(res, user);
     res.redirect("/");
   } catch (err) {
@@ -221,23 +229,17 @@ app.post("/registrer", async (req, res) => {
 app.post("/logg-inn", async (req, res) => {
   try {
     const email = (req.body.email || "").trim().toLowerCase();
-    const user = await User.findOne({email});
+    const user = await User.findOne({ email });
 
-    if (!user) return res.status(401).send("Fant ingen bruker med den e-posten");
-    if (user.role === "admin") return res.status(403).send("Admin kan ikke logge inn her")
-    }
+    if (!user)
+      return res.status(401).send("Fant ingen bruker med den e-posten");
+    if (user.role === "admin")
+      return res.status(403).send("Admin kan ikke logge inn her");
+  } catch (err) {
+    res.send(err);
+  }
 });
-
-
-
-
-
-
-
-
-
 
 app.listen(process.env.PORT, () => {
   console.log(`listening on port http://localhost:${process.env.PORT}`);
 });
-
