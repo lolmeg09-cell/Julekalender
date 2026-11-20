@@ -148,29 +148,39 @@ app.post("/luke/:id", requireUser, async (req, res) => {
   }
 });
 
+
+function setLoginCookie(res, user) {
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  });
+}
+
 function requireAdmin(req, res, next) {
   if (!req.user) return res.redirect("/logg-inn");
   if (req.user.role !== "admin") return res.status(403).send("Ingen tilgang");
   next();
 }
 
-app.get("/admin",(req, res) => {
+app.get("/admin", requireAdmin, (req, res) => {
   res.render("admin");
 });
 
-app.get("/svar",(req, res) => {
+app.get("/svar", requireAdmin, (req, res) => {
   res.render("svar");
 });
 
-app.get("/trekning",(req, res) => {
+app.get("/trekning", requireAdmin, (req, res) => {
   res.render("trekning");
 });
 
-app.get("/logg-inn", (req,res) => {
+app.get("/logg-inn", requireAdmin, (req,res) => {
   res.render("logg-inn")
 });
 
-app.get("/sporsmal",(req, res) => {
+app.get("/sporsmal", requireAdmin, (req, res) => {
   res.render("sporsmal");
 });
 
@@ -182,9 +192,8 @@ app.post("/registrer", async (req, res) => {
   try {
     const name = (req.body.name || "").trim();
     const email = (req.body.email || "").trim().toLowerCase();
-    setLoginCookie(res, user);
-    res.redirect("/");
-
+    
+ 
     if (!/^[a-zA-Z0-9._%+\-]+@afk\.no$/.test(email)) {
       return res.status(400).send("Ugyldig e-postadresse");
     }
@@ -198,7 +207,7 @@ app.post("/registrer", async (req, res) => {
       maxAge: 30 * 24 * 60 * 60 *1000,
     });
       
-
+    setLoginCookie(res, user);
     res.redirect("/");
   } catch (err) {
     console.error(err);
@@ -216,12 +225,6 @@ app.post("/logg-inn", async (req, res) => {
 
     if (!user) return res.status(401).send("Fant ingen bruker med den e-posten");
     if (user.role === "admin") return res.status(403).send("Admin kan ikke logge inn her")
-
-      setLoginCookie(res, user);
-      res.redirect("/");
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Noe gikk galt");
     }
 });
 
