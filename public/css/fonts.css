@@ -144,4 +144,9 @@ table {
     font-size: .95rem;
 }
 
+.a-små {
+  display: flex;
+  font-size: small;
+}
+
 

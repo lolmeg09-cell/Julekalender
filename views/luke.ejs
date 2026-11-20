@@ -1,0 +1,43 @@
+
+<%- include("./partials/head.ejs") %>
+<body>
+
+<section id="nav">
+  <%- include("./partials/nav.ejs")%>
+</section>
+
+<main class="wrap">
+    <h1>Luke <%= luke %></h1>
+    <h2><%= question.question %></h2>
+
+    <% if (embedUrl) { %>
+      <iframe width="560" height="315" src="<%= embedUrl %>"
+              title="Video til luke <%= luke %>" allowfullscreen
+              style="max-width:100%"></iframe>
+    <% } %>
+
+       <form action="/luke/<%= luke %>" method="post">
+      <% if (question.type === "multiple_choice") { %>
+        <fieldset>
+          <legend class="sr-only">Velg et svar</legend>
+          <% question.options.forEach(opt => { %>
+            <label>
+              <input type="radio" name="answer" value="<%= opt %>" required>
+              <%= opt %>
+            </label><br>
+          <% }) %>
+        </fieldset>
+      <% } else { %>
+        <label for="answer">Ditt svar</label>
+        <input class="svar-boks" type="text" name="answer" id="answer" required>
+      <% } %>
+
+            <button class="gul_knapp" type="submit">Send svar</button>
+            </form>
+
+            <a href="/">Tilbake til Kalenderen</a>
+
+</main>
+
+</body>
+</html>

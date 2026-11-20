@@ -9,7 +9,7 @@
 <div class="snow-zone">
  
   <main>
-    <%- include("./partials/dato.ejs")%>
+    <!-- <%- include("./partials/dato.ejs")%> -->
 
     
     
@@ -17,13 +17,15 @@
     <div class="wrap" id="info_main">
       
       <div>
-        <p class="info" id="dag">I DAG, 3. DESEMBER</p>
-        <h1 class="info" id="luke-info">Luke </h1>
-        <p class="info" id="åpnet">x av x luker er åpnet. Neste luke åpner i morgen</p>
+        <p class="info" id="dag"><%= today > 0 ? "I DAG, " + today + ". DESEMBER" : "KALENDEREN ÅPNER 1. DESEMBER" %></p>
+        <h1 class="info" id="luke-info">Luke <%= today > 0 ? today : "" %></h1>
+        <p class="info" id="åpnet"><%= opened %> av 24 luker er åpnet.</p>
       </div>
       
       <div class="btn-right">
-        <button class="gul_knapp">Åpne dagens luke</button>
+       <% if (today > 0 && !doneLukes.includes(today)) { %>
+          <a class="gul_knapp" href="/luke/<%= today %>">Åpne dagens luke</a>
+        <% } %>
       </div>
       
     </div>
@@ -46,17 +48,19 @@
   </div>
   
   <div>
-    <ul class="grid">
-        <% for (let i = 1; i <= 24; i++) { %>
-        <% if (i === today) { %>
-          <li><a class="tile today" href="/luke/<%= i %>"><b><%= i %></b><small>I dag</small></a></li>
-        <% } else if (i < today) { %>
-          <li><a class="tile open" href="/luke/<%= i %>"><b><%= i %></b></a></li>
-        <% } else { %>
-          <li><span class="tile lock"><b><%= i %></b></span></li>
-        <% } %>
-      <% } %>
-    </ul>
+  <ul class="grid">
+  <% for (let i = 1; i <= 24; i++) { %>
+    <% if (doneLukes.includes(i)) { %>
+      <li><span class="tile done" aria-label="Luke <%= i %> er åpnet"><b><%= i %></b><small>Åpnet ✓</small></span></li>
+    <% } else if (i === today) { %>
+      <li><a class="tile today" href="/luke/<%= i %>"><b><%= i %></b><small>I dag</small></a></li>
+    <% } else if (i < today) { %>
+      <li><a class="tile open" href="/luke/<%= i %>"><b><%= i %></b></a></li>
+    <% } else { %>
+      <li><span class="tile lock"><b><%= i %></b></span></li>
+    <% } %>
+  <% } %>
+</ul>
   </div>
   
   
