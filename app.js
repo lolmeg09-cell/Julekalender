@@ -83,7 +83,7 @@ app.use(async (req, res, next) => {
 });
 
 function requireUser(req, res, next) {
-  if (!req.user) return res.redirect("/registrer");
+  if (!req.user) return res.redirect("/logg-inn");
   next();
 }
 
@@ -131,7 +131,7 @@ app.post("/luke/:id", requireUser, async (req, res) => {
   try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1 || id > currentDay()) {
-      return res.status(403).send("Ikke tilgjenglig");
+      return res.status(403).send("Ikke tilgjengelig");
     }
 
     const q = await getQuestion(id);
@@ -183,7 +183,7 @@ app.get("/trekning", requireAdmin, (req, res) => {
   res.render("trekning");
 });
 
-app.get("/logg-inn", requireAdmin, (req, res) => {
+app.get("/logg-inn",  (req, res) => {
   res.render("logg-inn");
 });
 
@@ -243,3 +243,6 @@ app.post("/logg-inn", async (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log(`listening on port http://localhost:${process.env.PORT}`);
 });
+
+
+

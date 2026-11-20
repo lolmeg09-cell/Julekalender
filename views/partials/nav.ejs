@@ -12,12 +12,16 @@
   </div>
     
     <div class="nav_buttons">
+      <% if (!user) { %>
+        <a class="btn_nav" href="/logg-inn" aria-current="<%=path === '/logg-inn' ? 'page' : 'false'%>">Logg inn</a>
+        <a class="btn_nav" href="/registrer" aria-current="<%=path === '/registrer' ? 'page' : 'false'%>">Lag bruker</a>
+      <%}%>
 
+      <a class="btn_nav" href="/" aria-current="<%=path === '/' ? 'page' : 'false'%>">Kalender</a>
 
-      <a class="btn_nav" href="/registrer" aria-current="<%= path.startsWith('/registrer') ? 'page' : 'false' %>">Lag bruker</a>
-      <a class="btn_nav" href="/" aria-current="<%= path === '/' ? 'page' : 'false' %>">Kalender</a>
-      <a class="btn_nav" href="/admin" href="/sporsmal" href="/svar" href="/trekning" aria-current="<%= path.startsWith('/admin') ? 'page' : 'false' %>">Administrasjon</a>
-</div>
-    
+      <% if (user && user.role === "admin") {%>
+        <a class="btn_nav" href="/admin" aria-current="<%= path.startsWith('admin') ? 'page' : 'false'%>">Administrasjon</a>
+      <%}%> 
+    </div>
   </nav>
 </div>
