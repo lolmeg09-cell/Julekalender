@@ -11,6 +11,7 @@
 @import url("/css/mobil.css");
 @import url("/css/quiz.css");
 
+
 :root{
 --bg: #0f1b16;
 --surf:#17271f;
@@ -44,6 +45,12 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.popup-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cursor {
@@ -181,6 +188,8 @@ main {
 .tile.open  { 
   background: var(--past); 
   color: #f6efdc; 
+  cursor:not-allowed;
+  
 }
 
 .tile.lock  { 
@@ -198,7 +207,8 @@ main {
 
 .snow-zone {
   position: relative;
-  overflow: hidden;     
+  overflow: hidden;  
+  cursor: no;   
 }
 
 .flake {
@@ -242,6 +252,99 @@ main {
 
 input, label {
     display:block;  
+}
+
+
+.button-pop-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup {
+  position: fixed;
+  top: 100vh;
+  left: 0px;
+  width: 0px;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  transition: top 0ms ease-in-out 300ms, visibility 0ms ease-in-out 300ms;  
+  z-index: 1000;  
+}
+
+.popup .overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background:rgba(0,0,0,0.5);
+  opacity: 0;
+  transition:opacity 100ms ease-in-out 200ms;
+}
+
+.popup .popup-content{
+    position: absolute;
+    opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 350px;
+  border: 1px solid var(--gold);
+  background-color: var(--surf);
+  color: var(--ink);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 2px 5px rgba(0,0,0,0.05);
+  transition: all 300ms ease-in-out;
+  
+}
+
+.popup .popup-content h2 {
+  margin:10px 0px;
+  margin-bottom: 40px;
+  font-size: 25px;
+   color: var(--ink);
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+}
+
+.popup .lukk-btn {
+  display: block;
+  margin: 20px auto 0;
+  border: none;
+  background: var(--gold);
+  color: var(--brun);
+  padding: .55rem 1.4rem;
+  outline: none;
+  font-size: 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lukk-btn:hover {
+  opacity: 85%;
+}
+
+.popup.active {
+  top:0px;
+  visibility: visible;
+  transition: top 0ms ease-in-out 0ms, visibility 0ms ease-in-out 0ms;
+  
+}
+.popup.active .overlay {
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+
+.popup.active .popup-content {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
 

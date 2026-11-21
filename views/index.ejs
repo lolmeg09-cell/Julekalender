@@ -55,9 +55,9 @@
     <% } else if (i === today) { %>
       <li><a class="tile today" href="/luke/<%= i %>"><b><%= i %></b><small>I dag</small></a></li>
     <% } else if (i < today) { %>
-      <li><a class="tile open" href="/luke/<%= i %>"><b><%= i %></b></a></li>
+      <li><a class="tile open" data-status="missed" data-luke="<%= i %>" href="/luke/<%= i %>"><b><%= i %></b></a></li>
     <% } else { %>
-      <li><span class="tile lock"><b><%= i %></b></span></li>
+      <li><span data-status="lock" data-luke="<%= i %>" tabindex="0" role="button" class="tile lock"><b><%= i %></b></span></li>
     <% } %>
   <% } %>
 </ul>
@@ -67,6 +67,15 @@
   
 </main>
 </div>
+<section class="popup-wrap">
+  <div class="popup" id="popup">
+    <div class="overlay"></div>
+    <div class="popup-content">
+      <h2>Denne luken kan ikke  åpnes</h2>
+      <button class="lukk-btn">Lukk</button>
+    </div>
+  </div>
+</section>
 
 
 <section>

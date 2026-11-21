@@ -17,6 +17,8 @@
 
 //aktiv knapp funksjon
 
+
+
 const currentPath = window.location.pathname;
 const adminPaths = ["/admin", "/sporsmal", "/svar", "/trekning"];
 
