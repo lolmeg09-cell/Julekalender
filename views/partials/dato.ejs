@@ -1,31 +1,12 @@
- <div id="dato" class="wrap">
-    <div id="dato-wrap">
-      <label for="sel" class="dato-innhold" style="margin:0;font-weight:400">Dato:</label>
-      <select id="sel" class="dato-innhold" >
-        <option value="1">1. desember</option>
-        <option value="2">2. desember</option>
-        <option value="3">3. desember</option>
-        <option value="4">4. desember</option>
-        <option value="5">5. desember</option>
-        <option value="6">6. desember</option>
-        <option value="7">7. desember</option>
-        <option value="8">8. desember</option>
-        <option value="9">9. desember</option>
-        <option value="10">10. desember</option>
-        <option value="11">11. desember</option>
-        <option value="12">12. desember</option>
-        <option value="13">13. desember</option>
-        <option value="14">14. desember</option>
-        <option value="15">15. desember</option>
-        <option value="16">16. desember</option>
-        <option value="17">17. desember</option>
-        <option value="18">18. desember</option>
-        <option value="19">19. desember</option>
-        <option value="20">20. desember</option>
-        <option value="21">21. desember</option>
-        <option value="22">22. desember</option>
-        <option value="23">23. desember</option>
-        <option value="24">24. desember</option>
-      </select>
-    </div>
-  </div>
+<div id="dato" class="wrap">
+  <form id="dato-wrap" method="get" action="<%= path %>">
+    <label for="sel" class="dato-innhold" style="margin:0;font-weight:400">Dato:</label>
+    <select id="sel" name="luke" class="dato-innhold" onchange="this.form.submit()">
+      <% for (let i = 1; i <= 24; i++) { %>
+        <option value="<%= i %>" <%= (typeof luke !== "undefined" && luke === i) ? "selected" : "" %>>
+          <%= i %>. desember
+        </option>
+      <% } %>
+    </select>
+  </form>
+</div>

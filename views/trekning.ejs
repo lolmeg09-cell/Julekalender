@@ -20,46 +20,38 @@
         <div class="head-svar">
           <h1 class="overskrift-admin">Trekning</h1>
         </div>
-        <div class="svar-per-luke-boks">
-          <h2 class="luke-mini-overskrift">Luke</h2>
-            <select class="svar-boks" name="luker-sel" id="luker-sel">
-                  <option value="1">Luke 1</option>
-                  <option value="2">Luke 2</option>
-                  <option value="3">Luke 3</option>
-                  <option value="4">Luke 4</option>
-                  <option value="5">Luke 5</option>
-                  <option value="6">Luke 6</option>
-                  <option value="7">Luke 7</option>
-                  <option value="8">Luke 8</option>
-                  <option value="9">Luke 9</option>
-                  <option value="10">Luke 10</option>
-                  <option value="11">Luke 11</option>
-                  <option value="12">Luke 12</option>
-                  <option value="13">Luke 13</option>
-                  <option value="14">Luke 14</option>
-                  <option value="15">Luke 15</option>
-                  <option value="16">Luke 16</option>
-                  <option value="17">Luke 17</option>
-                  <option value="18">Luke 18</option>
-                  <option value="19">Luke 19</option>
-                  <option value="20">Luke 20</option>
-                  <option value="21">Luke 21</option>
-                  <option value="22">Luke 22</option>
-                  <option value="23">Luke 23</option>
-                  <option value="24">Luke 24</option>
-              </select>
-          <div>
-            <p>Vinner:</p>
-          </div>
-          <div class="resultat">
-            
-            
-          </div > 
-          <div>
+       <div class="svar-per-luke-boks">
+  <h2 class="luke-mini-overskrift">Luke</h2>
 
-            <button class="grønn-knapp" class="lagre-trek" id="lagre">Lagre luke</button>
-          </div>
-          </div>
+  <form method="get" action="/trekning">
+    <select class="svar-boks" name="luke" onchange="this.form.submit()">
+      <% for (let i = 1; i <= 24; i++) { %>
+        <option value="<%= i %>" <%= luke === i ? "selected" : "" %>>
+          Luke <%= i %><%= drawn.includes(i) ? " ✓" : "" %>
+        </option>
+      <% } %>
+    </select>
+  </form>
+
+  <div class="resultat">
+    <% if (winner) { %>
+      <p>Vinner:</p>
+      <h2><%= winner.user?.name || "Ukjent navn" %></h2>
+      <p><%= winner.user?.email %></p>
+      <p>Svar: <%= winner.answer?.answer %></p>
+      <p class="dato-innhold">
+        Trukket <%= new Date(winner.createdAt).toLocaleString("nb-NO", { timeZone: "Europe/Oslo", dateStyle: "short", timeStyle: "short" }) %>
+      </p>
+    <% } else if (eligible === 0) { %>
+      <p>Ingen riktige svar på denne luken ennå.</p>
+    <% } else { %>
+      <p><%= eligible %> deltaker<%= eligible === 1 ? "" : "e" %> med riktig svar.</p>
+      <form method="post" action="/trekning/<%= luke %>">
+        <button class="grønn-knapp" id="lagre">Trekk vinner</button>
+      </form>
+    <% } %>
+  </div>
+</div>
           
           
        

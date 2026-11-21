@@ -7,7 +7,7 @@ p, h1, h2, span, li, a {
   margin: 0px;
 }
 
-p, h1, h2, select, label, b {
+p, h1, h2, select, label, b, small, legend {
   color: var(--ink);
 }
 

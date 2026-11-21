@@ -20,62 +20,75 @@
           <h1 class="overskrift-admin">Svar</h1>
         </div>
         <div class="svar-per-luke-boks">
-          <div class="filtre">
-              <input class="svar-boks" type="text" placeholder="Search..">
-              <select class="svar-boks" name="luker-sel" id="luker-sel">
-                  <option value="1">Alle luker</option>
-                  <option value="2">1</option>
-                  <option value="3">2</option>
-                  <option value="4">3</option>
-                  <option value="5">4</option>
-                  <option value="6">5</option>
-                  <option value="7">6</option>
-                  <option value="8">7</option>
-                  <option value="9">8</option>
-                  <option value="10">9</option>
-                  <option value="11">10</option>
-                  <option value="12">11</option>
-                  <option value="13">12</option>
-                  <option value="14">13</option>
-                  <option value="15">14</option>
-                  <option value="16">15</option>
-                  <option value="17">16</option>
-                  <option value="18">17</option>
-                  <option value="19">18</option>
-                  <option value="20">19</option>
-                  <option value="21">20</option>
-                  <option value="22">21</option>
-                  <option value="23">22</option>
-                  <option value="24">23</option>
-                  <option value="25">24</option>
-              </select>
-              <select class="svar-boks" name="vurder" id="vurder">
-                <option value="1">Alle statuser</option>
-                <option value="2">Riktig</option>
-                <option value="3">Galt</option>
-                <option value="4">Ikke vurdert</option>
-              </select>
-          </div>
-          <tbody>
+           <form class="filtre" method="get" action="/svar">
+    <input class="svar-boks" type="text" name="q" placeholder="Søk navn, e-post eller svar..."
+           value="<%= filters.q %>">
 
-          </tbody>
+    <select class="svar-boks" name="luke" onchange="this.form.submit()">
+      <option value="">Alle luker</option>
+      <% openLukes.forEach(n => { %>
+        <option value="<%= n %>" <%= filters.luke === n ? "selected" : "" %>>Luke <%= n %></option>
+      <% }) %>
+    </select>
+
+    <select class="svar-boks" name="status" onchange="this.form.submit()">
+      <option value="">Alle statuser</option>
+      <option value="riktig"       <%= filters.status === "riktig" ? "selected" : "" %>>Riktig</option>
+      <option value="galt"         <%= filters.status === "galt" ? "selected" : "" %>>Galt</option>
+      <option value="ikke-vurdert" <%= filters.status === "ikke-vurdert" ? "selected" : "" %>>Ikke vurdert</option>
+    </select>
+
+    <select class="svar-boks" name="sort" onchange="this.form.submit()">
+      <option value="nyest"  <%= filters.sort === "nyest" ? "selected" : "" %>>Nyeste først</option>
+      <option value="eldst"  <%= filters.sort === "eldst" ? "selected" : "" %>>Eldste først</option>
+      <option value="riktig" <%= filters.sort === "riktig" ? "selected" : "" %>>Riktige først</option>
+      <option value="galt"   <%= filters.sort === "galt" ? "selected" : "" %>>Gale først</option>
+      <option value="ikke"   <%= filters.sort === "ikke" ? "selected" : "" %>>Ikke vurdert først</option>
+      <option value="luke"   <%= filters.sort === "luke" ? "selected" : "" %>>Etter luke</option>
+    </select>
+  </form>
+
           <table>
-            <tr>
-              <th>LUKE</th>
-              <th>DELTAKERE</th>
-              <th>SVAR</th>
-              <th>FASIT</th>
-              <th>STATUS</th>
-              <th>VURDER</th>
-            </tr>
-          </table>
-
-         </div>
-
-
-      </div>
-
-    </div>
+    <thead>
+      <tr>
+        <th>LUKE</th>
+        <th>NAVN</th>
+        <th>E-POST</th>
+        <th>SVAR</th>
+        <th>FASIT</th>
+        <th>DATO</th>
+        <th>STATUS</th>
+        <th>VURDER</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (rows.length === 0) { %>
+        <tr><td colspan="8">Ingen svar funnet.</td></tr>
+      <% } %>
+      <% rows.forEach(r => { %>
+        <tr>
+          <td><%= r.luke %></td>
+          <td><%= r.user?.name || "–" %></td>
+          <td><%= r.user?.email || "slettet bruker" %></td>
+          <td><%= r.answer %></td>
+          <td><%= r.fasit %></td>
+          <td><%= new Date(r.createdAt).toLocaleString("nb-NO", { timeZone: "Europe/Oslo", dateStyle: "short", timeStyle: "short" }) %></td>
+          <td>
+            <span class="status status-<%= r.status %>">
+              <%= r.status === "riktig" ? "Riktig" : r.status === "galt" ? "Galt" : "Ikke vurdert" %>
+            </span>
+          </td>
+          <td class="vurder-celle">
+            <form method="post" action="/svar/<%= r._id %>/vurder">
+              <button class="vurder-knapp ok"  name="verdict" value="riktig" title="Riktig">✓</button>
+              <button class="vurder-knapp bad" name="verdict" value="galt"   title="Galt">✗</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
 
 
 

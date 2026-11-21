@@ -8,6 +8,7 @@
 @import url("/css/trekning.css");
 @import url("/css/sporsmal.css");
 @import url("/css/registrer.css");
+@import url("/css/mobil.css");
 
 :root{
 --bg: #0f1b16;
@@ -171,15 +172,13 @@ main {
 }
 
 .tile.today { background: var(--open); 
-  color: 
-  #fff; 
+  color:#fff; 
 }
 
 .tile.done { opacity: 0.6; cursor: default; }
 
 .tile.open  { 
-  background: 
-  var(--past); 
+  background: var(--past); 
   color: #f6efdc; 
 }
 

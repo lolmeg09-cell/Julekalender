@@ -12,10 +12,51 @@
   display: flex;
   justify-content: space-between;
   gap: 7px;
+  flex-wrap: wrap;
 }
+
+.filtre .svar-boks {
+  flex:1; min-width: 160px;
+}
+
+
 
 table {
   border-bottom: 1px solid var(--line);
   width: 100%;
+  border-collapse: collapse;
 }
+
+th, td {
+  text-align: left;
+  padding: .6rem .7rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+
+th {
+  color: var(--mute);
+  font-size: .8rem; 
+  letter-spacing: .05em;
+
+}
+
+.status { padding: .15rem .6rem; border-radius: 99px; font-size: .8rem; border: 1px solid currentColor; }
+.status-riktig { color: var(--ok); }
+.status-galt { color: var(--bad); }
+.status-ikke-vurdert { color: var(--mute); }
+
+.vurder-celle form { display: flex; gap: .4rem; }
+.vurder-knapp {
+  background: var(--surf);
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  width: 2rem; height: 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.vurder-knapp.ok  { color: var(--ok); }
+.vurder-knapp.bad { color: var(--bad); }
+.vurder-knapp:hover { background: var(--line); }
+
 

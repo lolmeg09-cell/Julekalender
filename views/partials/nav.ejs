@@ -12,6 +12,11 @@
   </div>
     
     <div class="nav_buttons">
+        <% if (user) { %>
+          <form action="/logg-ut" method="post" style="display:inline">
+            <button class="btn_nav">Logg ut</button>
+          </form>
+        <% } %>
       <% if (!user) { %>
         <a class="btn_nav" href="/logg-inn" aria-current="<%=path === '/logg-inn' ? 'page' : 'false'%>">Logg inn</a>
         <a class="btn_nav" href="/registrer" aria-current="<%=path === '/registrer' ? 'page' : 'false'%>">Lag bruker</a>
@@ -21,7 +26,11 @@
 
       <% if (user && user.role === "admin") {%>
         <a class="btn_nav" href="/admin" aria-current="<%= path.startsWith('admin') ? 'page' : 'false'%>">Administrasjon</a>
+
+      
       <%}%> 
+      
+
     </div>
   </nav>
 </div>
