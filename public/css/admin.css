@@ -59,6 +59,8 @@
   border-top: 3px solid var(--gold);
   padding: .7rem .9rem;
   display: flex;
-  justify-content: flex-start;
   width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
