@@ -39,22 +39,51 @@ document.querySelectorAll(".btn_nav").forEach(link => {
 //Snøfnugg
 
 const zone = document.querySelector(".snow-zone");
-
-
 if (zone) {
+  const MIN_SPEED = 35;   
+  const MAX_SPEED = 90;   
+  const COUNT = window.innerWidth < 700 ? 30 : 50;
 
-  zone.style.setProperty("--fall-height", zone.offsetHeight + 40 + "px");
+  const flakes = [];
 
-  for (let i = 0; i < 50; i++) {
-    const flake = document.createElement("div");
-    flake.className = "flake";
-    flake.textContent = "❄";
-    flake.style.left = Math.random() * 100 + "%";
-    flake.style.fontSize = 10 + Math.random() * 14 + "px";
-    flake.style.opacity = 0.4 + Math.random() * 0.6;
-    flake.style.animationDuration = 8 + Math.random() * 12 + "s";
-    flake.style.animationDelay = Math.random() * -14 + "s";  
-    zone.appendChild(flake);
+  function update() {
+    const height = zone.offsetHeight + 40;
+    zone.style.setProperty("--fall-height", height + "px");
+
+    flakes.forEach((f) => {
+      const duration = height / f.speed;                   
+      f.el.style.animationDuration = duration + "s";
+      f.el.style.animationDelay = -f.offset * duration + "s";  
+    });
   }
-};
+
+  for (let i = 0; i < COUNT; i++){
+    const depth = Math.random();
+
+    const el = document.createElement("div");
+    el.className = "flake";
+    el.style.left = Math.random() * 100 + "%";
+    el.style.fontSize = 8 + depth * 16 + "px";         
+    el.style.opacity = 0.3 + depth * 0.7;                
+
+    const inner = document.createElement("span");
+    inner.textContent = "❄";
+    inner.style.setProperty("--sway", 10 + depth * 30 + "px");        
+    inner.style.animationDuration = 2.5 + Math.random() * 3.5 + "s";  
+    inner.style.animationDelay = -Math.random() * 6 + "s";           
+
+    el.appendChild(inner);
+    zone.appendChild(el);
+
+    flakes.push({
+      el,
+      speed: MIN_SPEED + depth * (MAX_SPEED - MIN_SPEED),   
+      offset: Math.random(),
+    });
+  }
+
+  update();
+  new ResizeObserver(update).observe(zone);
+}
+
 

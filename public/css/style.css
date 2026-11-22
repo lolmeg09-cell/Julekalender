@@ -221,8 +221,19 @@ main {
   animation: fall linear infinite;
 }
 
+.flake span {
+  display: block;
+  color: #fff;
+  animation: sway ease-in-out infinite alternate;  
+}
+
 @keyframes fall {
   to { transform: translateY(var(--fall-height)); }
+}
+
+@keyframes sway {
+  from { transform: translateX(calc(var(--sway) * -1)) rotate(-25deg); }
+  to   { transform: translateX(var(--sway)) rotate(25deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
